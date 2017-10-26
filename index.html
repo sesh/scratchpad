@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scratchpad</title>
+  
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+    
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    
+    textarea {
+      font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      font-size: 1em;
+      line-height: 1.4em;
+      width: 90%;
+      max-width: 74em;
+      height: 80vh;
+      box-sizing: border-box;
+      border: 0;
+      padding: 2em;
+      outline: none;
+      color: #343a40;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <textarea name="scratchpad" id="scratchpad" placeholder="This is an area where you can take notes...
+
+Some basic features:
+   
+- [x] monospaced font
+- [x] sort of nice grey colour scheme
+  - [ ] night mode! (solarized!)
+- [x] saved to local storage so it's here when you come back
+- [x] tab indents lines
+  - [x] shift+tab un-indents
+  - [ ] new lines have the same starting indentation
+- [ ] save / export note to gist"></textarea>
+  </main>
+  
+  <script>
+    var scratchpad = document.getElementById('scratchpad');
+    
+    if (localStorage.getItem("scratchpad")) {
+      scratchpad.value = localStorage.getItem("scratchpad");
+    }
+    
+    scratchpad.onkeyup = function(e) {
+      localStorage.setItem("scratchpad", scratchpad.value);
+    }
+    
+    scratchpad.onkeydown = function(e) {
+      // tab key
+      if (e.keyCode === 9) {
+        e.preventDefault();
+        var pos = scratchpad.selectionStart;
+        if (!e.shiftKey) {
+          scratchpad.value = scratchpad.value.slice(0, pos) + "  " + scratchpad.value.slice(pos);;
+          scratchpad.setSelectionRange(pos + 2, pos + 2);
+        } else {
+          // remove up to two white-spaces from the start of the current line
+          // bug: getting the current line is incorrect
+          var lines = scratchpad.value.split("\n");
+          var x = 0;
+          var current_line = 0;
+          for (var i in lines) {
+            var l = lines[i];
+            x += l.length;
+            if (x > pos) { break };
+            current_line++;
+          }
+          
+          var new_value = lines[current_line];
+          var shift = 0;
+          for(i in [1, 2]) {
+            if (new_value[0] === ' ') {
+              new_value = new_value.slice(1);
+              shift++;
+            };
+          }
+          lines[current_line] = new_value;
+          scratchpad.value = lines.join('\n');
+          scratchpad.setSelectionRange(pos - shift, pos - shift);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
