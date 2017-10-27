@@ -1,4 +1,4 @@
-`[scratchpad](https://sesh.github.io/scratchpad/)` is a place for notes. The notes are saved in your browser so they should be there when you come back.
+[`scratchpad`](https://sesh.github.io/scratchpad/) is a place for notes. The notes are saved in your browser so they should be there when you come back.
 
 ---
 
