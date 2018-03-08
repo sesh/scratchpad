@@ -62,23 +62,15 @@
       background-color: inherit;
       color: inherit;
     }
+
+    textarea.placeholder {
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body class="day">
   <main>
-    <textarea name="scratchpad" id="scratchpad" placeholder="This is an area where you can take notes...
-
-Some basic features:
-
-- [x] monospaced font
-  - [x] sort of nice grey colour scheme
-  - [x] night mode! (solarized!)
-    - [x] night mode switch!
-- [x] saved to local storage so it's here when you come back
-- [x] tab indents lines
-  - [x] shift+tab un-indents
-  - [x] new lines have the same starting indentation
-- [ ] save / export note to gist"></textarea>
+    <textarea name="scratchpad" id="scratchpad"></textarea>
   </main>
 
   <footer>
@@ -99,8 +91,11 @@ Some basic features:
     if (localStorage.getItem("scratchpad")) {
       scratchpad.value = localStorage.getItem("scratchpad");
     }
+
+    // set the placeholder if needed
+    setPlaceholder();
   </script>
-  
+
   <!-- note by unlimicon from the Noun Project -->
 </body>
 </html>

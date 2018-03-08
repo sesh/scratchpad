@@ -1,3 +1,34 @@
+var placeholder = "This is an area where you can take notes... \n\
+\n\
+Some basic features:\n\
+\n\
+- [x] monospaced font\n\
+  - [x] sort of nice grey colour scheme\n\
+  - [x] night mode! (solarized!)\n\
+    - [x] night mode switch!\n\
+- [x] saved to local storage so it's here when you come back\n\
+- [x] tab indents lines\n\
+  - [x] shift+tab un-indents\n\
+  - [x] new lines have the same starting indentation\n\
+- [ ] save / export note to gist"
+
+
+function setPlaceholder() {
+  if (scratchpad.value == '' || scratchpad.value == placeholder) {
+    scratchpad.value = placeholder;
+    scratchpad.className = 'placeholder';
+  }
+}
+scratchpad.onblur = setPlaceholder;
+
+scratchpad.onfocus = function(e) {
+  if (scratchpad.value == placeholder) {
+    scratchpad.value = '';
+  }
+  scratchpad.className = '';
+}
+
+
 scratchpad.onkeyup = function(e) {
   var lines = scratchpad.value.split("\n");
 
@@ -14,8 +45,10 @@ scratchpad.onkeyup = function(e) {
     }
   }
 
-  // save on key up
-  localStorage.setItem("scratchpad", scratchpad.value);
+  // save on key up if we're not looking at the placeholder text
+  if (scratchpad.value != placeholder) {
+    localStorage.setItem("scratchpad", scratchpad.value);
+  }
 }
 
 scratchpad.onkeydown = function(e) {
