@@ -11,3 +11,54 @@ function dayMode() {
 function getLineNumber(textarea, indicator) {
   return textarea.value.substr(0, textarea.selectionStart).split("\n").length - 1;
 }
+
+function jq() {
+  clearErrors();
+
+  try {
+    var formatted = JSON.stringify(JSON.parse(scratchpad.value), null, 2);
+    scratchpad.value = formatted;
+  } catch (e) {
+    var errors = document.getElementById('errors');
+    errors.innerText = "Syntax error";
+    console.error(e);
+  }
+}
+
+function clearErrors() {
+  errors.innerText = "";
+}
+
+function getWordAtCurrentPosition() {
+  var pos = scratchpad.selectionStart;
+  var x = pos;
+  var val = scratchpad.value[x];
+
+  // end of document
+  if (val === undefined) {
+    val = ' ';
+  }
+
+  if (!(val === ' ' || val === '\n')) {
+    while (!val.endsWith(' ') && !val.endsWith('\n')) {
+      x += 1;
+      if (x >= scratchpad.value.length)
+      {
+        break;
+      }
+      val += scratchpad.value[x];
+    }
+  }
+
+  val = val.toString().trim();
+  x = pos;
+
+  while (!val.startsWith(' ') && !val.startsWith('\n')) {
+    x -= 1;
+    if (x < 0)
+      break;
+    val = scratchpad.value[x] + val;
+  }
+
+  return val.trim();
+}

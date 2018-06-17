@@ -10,8 +10,8 @@ Some basic features:\n\
 - [x] tab indents lines\n\
   - [x] shift+tab un-indents\n\
   - [x] new lines have the same starting indentation\n\
-- [ ] save / export note to gist"
-
+- [x] format JSON\n\
+- [ ] save / export note to gist";
 
 function setPlaceholder() {
   if (scratchpad.value == '' || scratchpad.value == placeholder) {
@@ -53,11 +53,18 @@ scratchpad.onkeyup = function(e) {
 
 scratchpad.onkeydown = function(e) {
   var lines = scratchpad.value.split("\n");
+  var pos = scratchpad.selectionStart;
+
+  // super+enter: open url
+  if (e.keyCode === 13 && e.metaKey) {
+    var word = getWordAtCurrentPosition();
+    console.log(word);
+  }
 
   // tab key: indent; shift+tab: un-indent
   if (e.keyCode === 9) {
     e.preventDefault();
-    var pos = scratchpad.selectionStart;
+
     if (!e.shiftKey) {
       scratchpad.value = scratchpad.value.slice(0, pos) + "  " + scratchpad.value.slice(pos);
       scratchpad.setSelectionRange(pos + 2, pos + 2);
@@ -88,7 +95,6 @@ scratchpad.onkeydown = function(e) {
           scratchpad.setSelectionRange(pos - shift, pos - shift);
         }
       }
-
     }
   }
 }
