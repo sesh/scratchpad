@@ -13,20 +13,12 @@ function getLineNumber(textarea, indicator) {
 }
 
 function jq() {
-  clearErrors();
-
   try {
     var formatted = JSON.stringify(JSON.parse(scratchpad.value), null, 2);
     scratchpad.value = formatted;
   } catch (e) {
-    var errors = document.getElementById('errors');
-    errors.innerText = "Syntax error";
     console.error(e);
   }
-}
-
-function clearErrors() {
-  errors.innerText = "";
 }
 
 function getWordAtCurrentPosition() {

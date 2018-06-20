@@ -70,14 +70,6 @@
     textarea.placeholder {
       opacity: 0.7;
     }
-
-    .pinned-bar {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      width: 8em;
-      overflow: scroll;
-    }
   </style>
 </head>
 <body class="day">
@@ -85,26 +77,15 @@
     <textarea name="scratchpad" id="scratchpad"></textarea>
   </main>
 
-  <div class="pinned-bar">
-    <p>
-    <!-- Utils:<br>
-    > <a href="#" onclick="jq(); return false;">json format</a><br> -->
-    </p>
-
-    <p id="errors"></p>
-  </div>
-
   <footer>
     sp. (<a href="#" onclick="nightMode(); return false;">night</a> / <a href="#" onclick="dayMode(); return false;">day</a>)
+    <a href="#" onclick="jq(); return false;">jq</a><br>
   </footer>
 
   <script src="utils.js"></script>
   <script src="keyboard.js"></script>
   <script>
     var scratchpad = document.getElementById('scratchpad');
-    var errors = document.getElementById('errors');
-
-    errors.onclick = clearErrors;
 
     // ensure we keep the same night / day mode
     if (localStorage.getItem("mode") == "night") {
