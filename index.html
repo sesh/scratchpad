@@ -7,72 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="icon.png">
   <title>Scratchpad</title>
-
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-      font-size: 1em;
-      line-height: 1.4em;
-    }
-
-    body.night {
-      background-color: #002b36;
-      color: #eee8d5;
-    }
-
-    body.day {
-      background-color: #eee8d5;
-      color: #002b36;
-    }
-
-    #errors {
-      color: rgb(177, 70, 29);
-    }
-
-    a, a:visited {
-      color: #268bd2;
-      text-decoration: none;
-    }
-
-    a:hover {
-      font-weight: bold;
-      transition-duration: 0.1s;
-    }
-
-    main, footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 96%;
-      max-width: 74em;
-      margin: 0 auto;
-    }
-
-    footer {
-      height: 6vh;
-      justify-content: space-between;
-    }
-
-    textarea {
-      font-family: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      width: 100%;
-      height: 90vh;
-      box-sizing: border-box;
-      border: 0;
-      padding: 2em;
-      outline: none;
-      background-color: inherit;
-      color: inherit;
-    }
-
-    textarea.placeholder {
-      opacity: 0.7;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="day">
   <main>
@@ -80,32 +15,11 @@
   </main>
 
   <footer>
-    <p>
-      sp. (<a href="#" onclick="nightMode(); return false;">night</a> / <a href="#" onclick="dayMode(); return false;">day</a>)
-    </p>
-    <p>
-      ~<a href="#" onclick="jq(); return false;">jq</a>
-    </p>
+    <p>scratchpad.</p>
+    <p id="tools"></p>
   </footer>
 
-  <script src="utils.js"></script>
-  <script src="keyboard.js"></script>
-  <script>
-    var scratchpad = document.getElementById('scratchpad');
-
-    // ensure we keep the same night / day mode
-    if (localStorage.getItem("mode") == "night") {
-      document.getElementsByTagName('body')[0].classList = 'night';
-    }
-
-    // load the scratchpad content if it's there
-    if (localStorage.getItem("scratchpad")) {
-      scratchpad.value = localStorage.getItem("scratchpad");
-    }
-
-    // set the placeholder if needed
-    setPlaceholder();
-  </script>
+  <script src="app.js"></script>
 
   <!-- note by unlimicon from the Noun Project -->
   <script src="https://stats.brntn.me/static/track.js" async></script>
