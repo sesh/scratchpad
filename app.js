@@ -163,8 +163,9 @@ let updateWriteGood = (scratchpad) => {
     let results = writeGood(html);
 
     for (let r of results.reverse()) {
+        console.log(r);
         html = html.substring(0, r.index) +
-            "<span style='background-color: yellow; padding: 2px;'>" +
+            "<span style='background-color: yellow; padding: 2px;' aria-label='" + r.reason + "' data-balloon-pos='down-left'>" +
             html.substring(r.index, r.index + r.offset) +
             "</span>" + html.substring(r.index + r.offset);
     }
