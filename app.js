@@ -29,6 +29,10 @@ let loadFromLocalStorage = (scratchpad) => {
 
 let saveToLocalStorage = (scratchpad) => {
     localStorage.setItem("scratchpad", scratchpad.value);
+
+    if (scratchpad.onsave) {
+        scratchpad.onsave(scratchpad);
+    }
 }
 
 let indentNewline = (scratchpad) => {
@@ -125,6 +129,68 @@ let handleKeyDown = (e, scratchpad) => {
     }
 }
 
+let updateMarkdown = (scratchpad) => {
+    let el = document.querySelector('#markdownOutput');
+    let content = scratchpad.value;
+    el.innerHTML = marked(content);
+}
+
+let toggleMarkdown = (scratchpad) => {
+    let el = document.querySelector('#markdownOutput');
+
+    if(!el) {
+
+        el = document.createElement('div');
+        el.id = "markdownOutput";
+        el.style.width = "100%";
+        el.style.padding = "2em";
+        el.style.fontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif';
+        document.querySelector('main').appendChild(el);
+
+        updateMarkdown(scratchpad);
+        scratchpad.onsave = updateMarkdown;
+    } else {
+        el.parentNode.removeChild(el);
+        scratchpad.onsave = null;
+    }
+}
+
+let updateWriteGood = (scratchpad) => {
+    let tempEl = document.createElement('div');
+    tempEl.innerText = scratchpad.value;
+
+    let html = tempEl.innerHTML;
+    let results = writeGood(html);
+
+    for (let r of results.reverse()) {
+        html = html.substring(0, r.index) +
+            "<span style='background-color: yellow; padding: 2px;'>" +
+            html.substring(r.index, r.index + r.offset) +
+            "</span>" + html.substring(r.index + r.offset);
+    }
+
+    let el = document.querySelector('#writeGoodOutput');
+    el.innerHTML = html;
+}
+
+let toggleWriteGood = (scratchpad) => {
+    let el = document.querySelector('#writeGoodOutput');
+
+    if(!el) {
+        el = document.createElement('div');
+        el.id = "writeGoodOutput";
+        el.style.width = "100%";
+        el.style.padding = "2em";
+        document.querySelector('main').appendChild(el);
+
+        updateWriteGood(scratchpad);
+        scratchpad.onsave = updateWriteGood;
+    } else {
+        el.parentNode.removeChild(el);
+        scratchpad.onsave = null;
+    }
+}
+
 (function() {
     let scratchpad = document.querySelector('#scratchpad');
     loadFromLocalStorage(scratchpad);
@@ -139,8 +205,16 @@ let handleKeyDown = (e, scratchpad) => {
             "action": jq,
         },
         {
-            "name": "dark mode",
+            "name": "dark",
             "action": darkMode,
+        },
+        {
+            "name": "md",
+            "action": toggleMarkdown,
+        },
+        {
+            "name": "write-good",
+            "action": toggleWriteGood,
         }
     ];
 
