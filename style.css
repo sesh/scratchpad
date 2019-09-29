@@ -47,6 +47,9 @@
 
     main > * {
       flex: 1 1 0;
+      height: 90vh;
+      overflow: scroll;
+      box-sizing: border-box;
     }
 
     footer {
@@ -58,8 +61,6 @@
       font-family: inherit;
       font-size: inherit;
       line-height: inherit;
-      height: 90vh;
-      box-sizing: border-box;
       border: 0;
       padding: 2em;
       outline: none;
