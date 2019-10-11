@@ -1,73 +1,102 @@
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-      font-size: 1em;
-      line-height: 1.4em;
-    }
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 1em;
+    line-height: 1.4em;
+}
 
-    body.night {
-      background-color: #002b36;
-      color: #eee8d5;
-    }
+body.night {
+    background-color: #002b36;
+    color: #eee8d5;
+}
 
-    body.day {
-      background-color: #eee8d5;
-      color: #002b36;
-    }
+body.day {
+    background-color: #eee8d5;
+    color: #002b36;
+}
 
-    #errors {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        width: 40%;
-        min-width: 33em;
-        padding: 6px;
-        background-color: rgb(177, 70, 29);
-        color: white;
-    }
+#errors {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 40%;
+    min-width: 33em;
+    padding: 6px;
+    background-color: #cb4b16;
+    color: white;
+}
 
-    a, a:visited {
-      color: #268bd2;
-      text-decoration: none;
-    }
+a,
+a:visited {
+    color: #268bd2;
+    text-decoration: none;
+}
 
-    a:hover {
-      font-weight: bold;
-      transition-duration: 0.1s;
-    }
+a:hover {
+    font-weight: bold;
+    transition-duration: 0.1s;
+}
 
-    main, footer {
-      display: flex;
-      justify-content: center;
-      width: 96%;
-      max-width: 74em;
-      margin: 0 auto;
-    }
+main,
+footer {
+    display: flex;
+    justify-content: center;
+    width: 96%;
+    max-width: 74em;
+    margin: 0 auto;
+}
 
-    main > * {
-      flex: 1 1 0;
-      height: 90vh;
-      overflow: scroll;
-      box-sizing: border-box;
-    }
+main>* {
+    flex: 1 1 0;
+    height: 90vh;
+    overflow: scroll;
+    box-sizing: border-box;
+}
 
-    footer {
-      height: 6vh;
-      justify-content: space-between;
-    }
+footer {
+    height: 6vh;
+    justify-content: space-between;
+}
 
-    textarea {
-      font-family: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      border: 0;
-      padding: 2em;
-      outline: none;
-      background-color: inherit;
-      color: inherit;
-    }
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    border: 0;
+    padding: 2em;
+    outline: none;
+    background-color: inherit;
+    color: inherit;
+}
 
-    textarea.placeholder {
-      opacity: 0.7;
-    }
+textarea.placeholder {
+    opacity: 0.7;
+}
+
+.dismissable {
+    position: relative;
+    padding: 2em;
+}
+
+.dismissable .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.highlight {
+    background-color: #d33682;
+    padding: 2px;
+}
+
+body.night .highlight {
+    background-color: #657b83;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1.4em;
+}

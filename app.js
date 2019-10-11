@@ -138,15 +138,8 @@ let updateMarkdown = (scratchpad) => {
 let toggleMarkdown = (scratchpad) => {
     let el = document.querySelector('#markdownOutput');
 
-    if(!el) {
-
-        el = document.createElement('div');
-        el.id = "markdownOutput";
-        el.style.width = "100%";
-        el.style.padding = "2em";
-        el.style.fontFamily = '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif';
-        document.querySelector('main').appendChild(el);
-
+    if (!el) {
+        openDismissablePanel('markdownOutput');
         updateMarkdown(scratchpad);
         scratchpad.onsave = updateMarkdown;
     } else {
@@ -165,7 +158,7 @@ let updateWriteGood = (scratchpad) => {
     for (let r of results.reverse()) {
         console.log(r);
         html = html.substring(0, r.index) +
-            "<span style='background-color: yellow; padding: 2px;' aria-label='" + r.reason + "' data-balloon-pos='down-left'>" +
+            "<span class='highlight' aria-label='" + r.reason + "' data-balloon-pos='down-left'>" +
             html.substring(r.index, r.index + r.offset) +
             "</span>" + html.substring(r.index + r.offset);
     }
@@ -177,22 +170,44 @@ let updateWriteGood = (scratchpad) => {
 let toggleWriteGood = (scratchpad) => {
     let el = document.querySelector('#writeGoodOutput');
 
-    if(!el) {
-        el = document.createElement('div');
-        el.id = "writeGoodOutput";
-        el.style.width = "100%";
-        el.style.padding = "2em";
-        document.querySelector('main').appendChild(el);
-
+    if (!el) {
+        openDismissablePanel('writeGoodOutput')
         updateWriteGood(scratchpad);
         scratchpad.onsave = updateWriteGood;
     } else {
-        el.parentNode.removeChild(el);
+        dismissDismissablePanels();
         scratchpad.onsave = null;
     }
 }
 
-(function() {
+let dismissDismissablePanels = () => {
+    let els = document.getElementsByClassName('dismissable');
+
+    for (let el of els) {
+        el.parentNode.removeChild(el);
+    }
+};
+
+let openDismissablePanel = (id) => {
+    dismissDismissablePanels();
+
+    let el = document.createElement('div');
+    el.classList = 'dismissable';
+
+    let closeEl = document.createElement('span');
+    closeEl.innerHTML = 'x';
+    closeEl.classList = 'close';
+    closeEl.onclick = dismissDismissablePanels;
+    el.appendChild(closeEl);
+
+    let contentEl = document.createElement('div');
+    contentEl.id = id;
+    el.appendChild(contentEl);
+
+    document.querySelector('main').appendChild(el);
+};
+
+(function () {
     let scratchpad = document.querySelector('#scratchpad');
     loadFromLocalStorage(scratchpad);
 
@@ -231,4 +246,6 @@ let toggleWriteGood = (scratchpad) => {
         a.href = "#";
         toolsEl.appendChild(a)
     });
+
+    openDismissablePanel();
 })()
