@@ -92,7 +92,6 @@ let unindentCurrentLine = (scratchpad) => {
     let line = lines[current_line_number];
     let line_length = line.length;
 
-    console.l
     // remove up to two spaces from the current line
     line = line[0] === " " ? line.substring(1) : line;
     line = line[0] === " " ? line.substring(1) : line
@@ -207,7 +206,7 @@ let openDismissablePanel = (id) => {
     document.querySelector('main').appendChild(el);
 };
 
-(function () {
+(function() {
     let scratchpad = document.querySelector('#scratchpad');
     loadFromLocalStorage(scratchpad);
 
@@ -215,8 +214,7 @@ let openDismissablePanel = (id) => {
     scratchpad.onkeyup = (e) => handleKeyUp(e, scratchpad);
 
     // setup actions
-    const tools = [
-        {
+    const tools = [{
             "name": "jq",
             "action": jq,
         },
