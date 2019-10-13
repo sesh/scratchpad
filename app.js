@@ -244,6 +244,4 @@ let openDismissablePanel = (id) => {
         a.href = "#";
         toolsEl.appendChild(a)
     });
-
-    openDismissablePanel();
 })()
