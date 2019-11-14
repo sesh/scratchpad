@@ -142,7 +142,7 @@ let toggleMarkdown = (scratchpad) => {
         updateMarkdown(scratchpad);
         scratchpad.onsave = updateMarkdown;
     } else {
-        el.parentNode.removeChild(el);
+        dismissDismissablePanels();
         scratchpad.onsave = null;
     }
 }
