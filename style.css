@@ -294,3 +294,14 @@ body.night .hljs-emphasis {
 body.night .hljs-strong {
     font-weight: bold;
 }
+
+@media print {
+    body {
+        background-color: transparent!important;
+        color: #002b36;
+    }
+
+    textarea, .close, footer {
+        display: none;
+    }
+}
