@@ -131,7 +131,11 @@ let handleKeyDown = (e, scratchpad) => {
 let updateMarkdown = (scratchpad) => {
     let el = document.querySelector('#markdownOutput');
     let content = scratchpad.value;
-    el.innerHTML = marked(content);
+    el.innerHTML = marked(content, {
+        highlight: (code) => {
+            return hljs.highlightAuto(code).value;
+        }
+    });
 }
 
 let toggleMarkdown = (scratchpad) => {
