@@ -109,3 +109,188 @@ p {
 #markdownOutput pre {
     font-family: monospace;
 }
+
+.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #fdf6e3;
+    color: #657b83;
+}
+
+.hljs-comment,
+.hljs-quote {
+    color: #93a1a1;
+}
+
+
+/* Solarized Green */
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+    color: #859900;
+}
+
+
+/* Solarized Cyan */
+
+.hljs-number,
+.hljs-string,
+.hljs-meta .hljs-meta-string,
+.hljs-literal,
+.hljs-doctag,
+.hljs-regexp {
+    color: #2aa198;
+}
+
+
+/* Solarized Blue */
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+    color: #268bd2;
+}
+
+
+/* Solarized Yellow */
+
+.hljs-attribute,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-class .hljs-title,
+.hljs-type {
+    color: #b58900;
+}
+
+
+/* Solarized Orange */
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-meta .hljs-keyword,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-link {
+    color: #cb4b16;
+}
+
+
+/* Solarized Red */
+
+.hljs-built_in,
+.hljs-deletion {
+    color: #dc322f;
+}
+
+.hljs-formula {
+    background: #eee8d5;
+}
+
+.hljs-emphasis {
+    font-style: italic;
+}
+
+.hljs-strong {
+    font-weight: bold;
+}
+
+
+/* --- Dark --- */
+
+body.night .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #002b36;
+    color: #839496;
+}
+
+body.night .hljs-comment,
+body.night .hljs-quote {
+    color: #586e75;
+}
+
+
+/* Solarized Green */
+
+body.night .hljs-keyword,
+body.night .hljs-selector-tag,
+body.night .hljs-addition {
+    color: #859900;
+}
+
+
+/* Solarized Cyan */
+
+body.night .hljs-number,
+body.night .hljs-string,
+body.night .hljs-meta .hljs-meta-string,
+body.night .hljs-literal,
+body.night .hljs-doctag,
+body.night .hljs-regexp {
+    color: #2aa198;
+}
+
+
+/* Solarized Blue */
+
+body.night .hljs-title,
+body.night .hljs-section,
+body.night .hljs-name,
+body.night .hljs-selector-id,
+body.night .hljs-selector-class {
+    color: #268bd2;
+}
+
+
+/* Solarized Yellow */
+
+body.night .hljs-attribute,
+body.night .hljs-attr,
+body.night .hljs-variable,
+body.night .hljs-template-variable,
+body.night .hljs-class .hljs-title,
+body.night .hljs-type {
+    color: #b58900;
+}
+
+
+/* Solarized Orange */
+
+body.night .hljs-symbol,
+body.night .hljs-bullet,
+body.night .hljs-subst,
+body.night .hljs-meta,
+body.night .hljs-meta .hljs-keyword,
+body.night .hljs-selector-attr,
+body.night .hljs-selector-pseudo,
+body.night .hljs-link {
+    color: #cb4b16;
+}
+
+
+/* Solarized Red */
+
+body.night .hljs-built_in,
+body.night .hljs-deletion {
+    color: #dc322f;
+}
+
+body.night .hljs-formula {
+    background: #073642;
+}
+
+body.night .hljs-emphasis {
+    font-style: italic;
+}
+
+body.night .hljs-strong {
+    font-weight: bold;
+}
