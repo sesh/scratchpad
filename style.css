@@ -296,9 +296,9 @@ body.night .hljs-strong {
 }
 
 @media print {
-    body {
-        background-color: transparent!important;
-        color: #002b36;
+    body.night, body.day {
+        background-color: transparent;
+        color: #000000;
     }
 
     textarea, .close, footer {
