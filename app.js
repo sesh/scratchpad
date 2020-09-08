@@ -75,7 +75,7 @@ let jq = (scratchpad) => {
 let jwt = (scratchpad) => {
     try {
         var token = jwt_decode(scratchpad.value);
-        var formatted = JSON.stringify(JSON.parse(scratchpad.value), null, 2);
+        var formatted = JSON.stringify(token, null, 2);
         scratchpad.value = formatted;
     } catch (e) {
         displayError(e.message);
