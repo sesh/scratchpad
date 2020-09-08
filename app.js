@@ -72,6 +72,17 @@ let jq = (scratchpad) => {
 }
 
 
+let jwt = (scratchpad) => {
+    try {
+        var token = jwt_decode(scratchpad.value);
+        var formatted = JSON.stringify(JSON.parse(scratchpad.value), null, 2);
+        scratchpad.value = formatted;
+    } catch (e) {
+        displayError(e.message);
+    }
+}
+
+
 let darkMode = () => {
     let body = document.querySelector('body');
 
@@ -233,6 +244,10 @@ let openDismissablePanel = (id) => {
         {
             "name": "write-good",
             "action": toggleWriteGood,
+        },
+        {
+            "name": "jwt",
+            "action": jwt
         }
     ];
 
@@ -248,6 +263,6 @@ let openDismissablePanel = (id) => {
         a.href = "#";
         toolsEl.appendChild(a)
     });
-    
+
     scratchpad.focus();
 })()
