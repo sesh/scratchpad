@@ -246,10 +246,7 @@ let openDismissablePanel = (id) => {
     scratchpad.onkeyup = (e) => handleKeyUp(e, scratchpad);
 
     // setup actions
-    const tools = [{
-            "name": "jq",
-            "action": jq,
-        },
+    const tools = [
         {
             "name": "dark",
             "action": darkMode,
@@ -261,6 +258,11 @@ let openDismissablePanel = (id) => {
         {
             "name": "write-good",
             "action": toggleWriteGood,
+        },
+        {
+            "name": "jq",
+            "action": jq,
+            "description": "Format the current scratchpad value as JSON"
         },
         {
             "name": "jwt",
