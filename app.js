@@ -15,6 +15,13 @@ let getLineNumber = (textarea) => {
     return textarea.value.substr(0, textarea.selectionStart).split("\n").length - 1;
 };
 
+let replaceSelection = (textarea, value) => {
+    var pos = textarea.selectionStart;
+    textarea.value = textarea.value.slice(0, pos) + value + textarea.value.slice(textarea.selectionEnd);
+    textarea.focus();
+    textarea.setSelectionRange(pos + value.length, pos + value.length);
+}
+
 let loadFromLocalStorage = (scratchpad) => {
     // ensure we keep the same night / day mode
     if (localStorage.getItem("mode") == "night") {
@@ -71,7 +78,6 @@ let jq = (scratchpad) => {
     }
 }
 
-
 let jwt = (scratchpad) => {
     try {
         var token = jwt_decode(scratchpad.value);
@@ -82,6 +88,17 @@ let jwt = (scratchpad) => {
     }
 }
 
+let uuid = (scratchpad) => {
+    var uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+
+    replaceSelection(scratchpad, uuid);
+}
+
+let dt = (scratchpad) => {
+    replaceSelection(scratchpad, new Date().toISOString());
+}
 
 let darkMode = () => {
     let body = document.querySelector('body');
@@ -248,6 +265,14 @@ let openDismissablePanel = (id) => {
         {
             "name": "jwt",
             "action": jwt
+        },
+        {
+            "name": "uuid",
+            "action": uuid
+        },
+        {
+            "name": "dt",
+            "action": dt
         }
     ];
 
