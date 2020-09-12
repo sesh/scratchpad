@@ -69,6 +69,12 @@ let continueListOnNewline = (scratchpad) => {
     }
 }
 
+let sortLines = (scratchpad) => {
+    let lines = scratchpad.value.split("\n");
+    lines.sort();
+    scratchpad.value = lines.join("\n");
+}
+
 let jq = (scratchpad) => {
     try {
         var formatted = JSON.stringify(JSON.parse(scratchpad.value), null, 2);
@@ -275,6 +281,11 @@ let openDismissablePanel = (id) => {
         {
             "name": "dt",
             "action": dt
+        },
+        {
+            "name": "sort",
+            "action": sortLines,
+            "description": "Sort all lines in the scratchpad alphabetically"
         }
     ];
 
