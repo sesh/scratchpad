@@ -131,6 +131,15 @@ let dt = (scratchpad) => {
     replaceSelection(scratchpad, new Date().toISOString());
 }
 
+let pw = (scratchpad) => {
+    var passwordCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%+-./:=@_"
+    var result = "";
+    while (result.length < 12) {
+        result += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+    }
+    replaceSelection(scratchpad, result);
+}
+
 let darkMode = () => {
     let body = document.querySelector('body');
 
@@ -316,6 +325,11 @@ let openDismissablePanel = (id) => {
             "name": "shuffle",
             "action": shuffleLines,
             "description": "Sort all lines in the scratchpad alphabetically"
+        },
+        {
+            "name": "pw",
+            "action": pw,
+            "description": "Generate a random 12 character password"
         }
     ];
 
