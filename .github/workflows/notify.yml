@@ -1,0 +1,15 @@
+name: Trigger rebuild of parent repo
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-20.04
+    container: alpine/httpie
+    steps:
+      - name: Notify parent repo
+        run: http post https://api.github.com/repos/sesh/brntn.me/dispatches "Authorization:token ${{ secrets.NOTIFY_TOKEN }}" event_type=build --ignore-stdin
