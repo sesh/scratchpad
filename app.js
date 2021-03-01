@@ -352,19 +352,26 @@ let openDismissablePanel = (id) => {
     let toolsEl = document.querySelector("#tools");
     let sidebarEl = document.querySelector("#sidebar");
     tools.forEach(tool => {
+        if (tool.footer) {
+            let a = document.createElement('a');
+            a.innerText = "~" + tool.name + "   ";
+            a.onclick = (e) => {
+                e.preventDefault();
+                tool.action(scratchpad);
+                saveToLocalStorage(scratchpad);
+            };
+            a.href = "#";
+            toolsEl.appendChild(a);
+        }
+
         let a = document.createElement('a');
-        a.innerText = "~" + tool.name + "   ";
+        a.innerText = "~" + tool.name;
         a.onclick = (e) => {
             e.preventDefault();
             tool.action(scratchpad);
             saveToLocalStorage(scratchpad);
         };
         a.href = "#";
-
-        if (tool.footer) {
-            toolsEl.appendChild(a);
-        }
-        a = a.cloneNode(true);
         sidebarEl.appendChild(a);
     });
 
