@@ -112,8 +112,8 @@ let jq = (scratchpad) => {
 let jwt = (scratchpad) => {
     try {
         var token = jwt_decode(scratchpad.value);
-        var formatted = JSON.stringify(token, null, 2);
-        scratchpad.value = formatted;
+        var decodedHeader = jwt_decode(scratchpad.value, { header: true });
+        scratchpad.value = JSON.stringify(decodedHeader, null, 2) + "\n" + JSON.stringify(token, null, 2);
     } catch (e) {
         displayError(e.message);
     }
