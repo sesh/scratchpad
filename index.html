@@ -19,8 +19,10 @@
 </head>
 
 <body class="day">
+    <div id="sidebar"></div>
+
     <main>
-        <textarea name="scratchpad" id="scratchpad" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <textarea name="scratchpad" id="scratchpad" autocorrect="off" autocapitalize="off" spellcheck="false" class="mousetrap"></textarea>
     </main>
 
     <footer>
@@ -28,6 +30,7 @@
         <p id="tools"></p>
     </footer>
 
+    <script src="vendor/mousetrap.min.js"></script>
     <script src="app.js"></script>
     <script src="https://stats.brntn.me/static/track.js" async></script>
     <script src="vendor/write-good.dist.js" async></script>

@@ -251,6 +251,11 @@ let toggleWriteGood = (scratchpad) => {
     }
 }
 
+let toggleSidebar = (scratchpad) => {
+    let sidebarEl = document.querySelector("#sidebar");
+    sidebarEl.style.display = sidebarEl.style.display == 'block' ? 'none' : 'block';
+}
+
 let dismissDismissablePanels = () => {
     let els = document.getElementsByClassName('dismissable');
 
@@ -288,12 +293,18 @@ let openDismissablePanel = (id) => {
     // setup actions
     const tools = [
         {
+            "name": "sidebar",
+            "action": toggleSidebar,
+            "footer": true,
+        },
+        {
             "name": "dark",
             "action": darkMode,
         },
         {
             "name": "md",
             "action": toggleMarkdown,
+            "footer": true,
         },
         {
             "name": "write-good",
@@ -302,19 +313,23 @@ let openDismissablePanel = (id) => {
         {
             "name": "jq",
             "action": jq,
-            "description": "Format the current scratchpad value as JSON"
+            "description": "Format the current scratchpad value as JSON",
+            "footer": true,
         },
         {
             "name": "jwt",
-            "action": jwt
+            "action": jwt,
+            "footer": true,
         },
         {
             "name": "uuid",
-            "action": uuid
+            "action": uuid,
+            "footer": true,
         },
         {
             "name": "dt",
-            "action": dt
+            "action": dt,
+            "footer": true,
         },
         {
             "name": "sort",
@@ -329,12 +344,14 @@ let openDismissablePanel = (id) => {
         {
             "name": "pw",
             "action": pw,
-            "description": "Generate a random 12 character password"
+            "description": "Generate a random 12 character password",
+            "footer": true,
         }
     ];
 
+    let toolsEl = document.querySelector("#tools");
+    let sidebarEl = document.querySelector("#sidebar");
     tools.forEach(tool => {
-        let toolsEl = document.querySelector("#tools");
         let a = document.createElement('a');
         a.innerText = "~" + tool.name + "   ";
         a.onclick = (e) => {
@@ -343,8 +360,20 @@ let openDismissablePanel = (id) => {
             saveToLocalStorage(scratchpad);
         };
         a.href = "#";
-        toolsEl.appendChild(a)
+
+        if (tool.footer) {
+            toolsEl.appendChild(a);
+        }
+        a = a.cloneNode(true);
+        sidebarEl.appendChild(a);
     });
 
+    toolsEl.appendChild(document.createElement("br"));
+    toolsEl.appendChild(document.createTextNode("(sidebar: cmd+shift+k)"));
+
     scratchpad.focus();
+
+    Mousetrap.bind('mod+shift+k', function(e) {
+        toggleSidebar();
+    });
 })()
