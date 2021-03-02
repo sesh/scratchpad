@@ -299,6 +299,7 @@ let openDismissablePanel = (id) => {
         {
             "name": "dark",
             "action": darkMode,
+            "footer": true,
         },
         {
             "name": "dt",
