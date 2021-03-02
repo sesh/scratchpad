@@ -131,6 +131,10 @@ let dt = (scratchpad) => {
     replaceSelection(scratchpad, new Date().toISOString());
 }
 
+let passphrase = (scratchpad) => {
+    replaceSelection(scratchpad, generatePassphrase());
+}
+
 let pw = (scratchpad) => {
     var passwordCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890%+-./:=@_"
     var result = "";
@@ -293,22 +297,13 @@ let openDismissablePanel = (id) => {
     // setup actions
     const tools = [
         {
-            "name": "sidebar",
-            "action": toggleSidebar,
-            "footer": true,
-        },
-        {
             "name": "dark",
             "action": darkMode,
         },
         {
-            "name": "md",
-            "action": toggleMarkdown,
+            "name": "dt",
+            "action": dt,
             "footer": true,
-        },
-        {
-            "name": "write-good",
-            "action": toggleWriteGood,
         },
         {
             "name": "jq",
@@ -322,13 +317,29 @@ let openDismissablePanel = (id) => {
             "footer": true,
         },
         {
-            "name": "uuid",
-            "action": uuid,
+            "name": "md",
+            "action": toggleMarkdown,
             "footer": true,
         },
         {
-            "name": "dt",
-            "action": dt,
+            "name": "passphrase",
+            "action": passphrase,
+            "description": "Generate a passphrase using the EFF short word list"
+        },
+        {
+            "name": "pw",
+            "action": pw,
+            "description": "Generate a random 12 character password",
+            "footer": true,
+        },
+        {
+            "name": "shuffle",
+            "action": shuffleLines,
+            "description": "Sort all lines in the scratchpad alphabetically"
+        },
+        {
+            "name": "sidebar",
+            "action": toggleSidebar,
             "footer": true,
         },
         {
@@ -337,16 +348,14 @@ let openDismissablePanel = (id) => {
             "description": "Sort all lines in the scratchpad alphabetically"
         },
         {
-            "name": "shuffle",
-            "action": shuffleLines,
-            "description": "Sort all lines in the scratchpad alphabetically"
+            "name": "uuid",
+            "action": uuid,
+            "footer": true,
         },
         {
-            "name": "pw",
-            "action": pw,
-            "description": "Generate a random 12 character password",
-            "footer": true,
-        }
+            "name": "write-good",
+            "action": toggleWriteGood,
+        },
     ];
 
     let toolsEl = document.querySelector("#tools");
