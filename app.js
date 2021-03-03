@@ -100,6 +100,14 @@ let shuffleLines = (scratchpad) => {
     scratchpad.value = lines.join("\n");
 }
 
+let base64encode = (textarea) => {
+    textarea.value = btoa(textarea.value);
+};
+
+let base64decode = (textarea) => {
+    textarea.value = atob(textarea.value);
+}
+
 let jq = (scratchpad) => {
     try {
         var formatted = JSON.stringify(JSON.parse(scratchpad.value), null, 2);
@@ -295,7 +303,19 @@ let openDismissablePanel = (id) => {
     scratchpad.onkeyup = (e) => handleKeyUp(e, scratchpad);
 
     // setup actions
+    // other ideas:
+    //  - kroki.io chart (with preview)
+    //  - regex matches
+
     const tools = [
+        {
+            "name": "base64-decode",
+            "action": base64decode,
+        },
+        {
+            "name": "base64-encode",
+            "action": base64encode,
+        },
         {
             "name": "dark",
             "action": darkMode,
