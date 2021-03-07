@@ -28,10 +28,6 @@ let loadFromLocalStorage = (scratchpad) => {
         document.getElementsByTagName('body')[0].classList = 'night';
     }
 
-    if (localStorage.getItem("duospace") === '1') {
-        duospace();
-    }
-
     // load the scratchpad content if it's there
     if (localStorage.getItem("scratchpad")) {
         scratchpad.value = localStorage.getItem("scratchpad");
