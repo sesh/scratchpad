@@ -156,12 +156,6 @@ let pw = (scratchpad) => {
     replaceSelection(scratchpad, result);
 }
 
-let duospace = () => {
-    let body = document.querySelector('body');
-    body.classList.toggle('duospace');
-    localStorage.setItem("duospace", body.classList.contains('duospace') ? '1' : '');
-}
-
 let download = (scratchpad) => {
     var link = "data:application/octet-stream;charset=utf-16le;base64," + btoa(scratchpad.value);
     var el = document.createElement('a');
@@ -352,10 +346,6 @@ let openDismissablePanel = (id) => {
             "name": "dt",
             "action": dt,
             "footer": true,
-        },
-        {
-            "name": "duospace (font)",
-            "action": duospace,
         },
         {
             "name": "jq",
