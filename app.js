@@ -28,6 +28,10 @@ let loadFromLocalStorage = (scratchpad) => {
         document.getElementsByTagName('body')[0].classList = 'night';
     }
 
+    if (localStorage.getItem("duospace") === '1') {
+        duospace();
+    }
+
     // load the scratchpad content if it's there
     if (localStorage.getItem("scratchpad")) {
         scratchpad.value = localStorage.getItem("scratchpad");
@@ -150,6 +154,24 @@ let pw = (scratchpad) => {
         result += passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
     }
     replaceSelection(scratchpad, result);
+}
+
+let duospace = () => {
+    let body = document.querySelector('body');
+    body.classList.toggle('duospace');
+    localStorage.setItem("duospace", body.classList.contains('duospace') ? '1' : '');
+}
+
+let download = (scratchpad) => {
+    var link = "data:application/octet-stream;charset=utf-16le;base64," + btoa(scratchpad.value);
+    var el = document.createElement('a');
+    el.setAttribute("href", link);
+    el.setAttribute("download", new Date().toISOString().replaceAll(":", "") + "-scratchpad.txt");
+    el.innerText = "dl";
+    el.style.display = "none";
+    document.body.appendChild(el);
+    el.click();
+    document.body.removeChild(el);
 }
 
 let darkMode = () => {
@@ -322,9 +344,18 @@ let openDismissablePanel = (id) => {
             "footer": true,
         },
         {
+            "name": "dl",
+            "action": download,
+            "footer": true,
+        },
+        {
             "name": "dt",
             "action": dt,
             "footer": true,
+        },
+        {
+            "name": "duospace (font)",
+            "action": duospace,
         },
         {
             "name": "jq",

@@ -2,9 +2,13 @@ body,
 html {
     margin: 0;
     padding: 0;
-    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-family: 'IBM Plex Mono', Consolas, 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
     font-size: 1em;
     line-height: 1.4em;
+}
+
+body.duospace {
+    font-family: 'iA Writer Duospace', Consolas, 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
 }
 
 body.night {
