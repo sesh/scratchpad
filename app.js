@@ -176,6 +176,19 @@ let darkMode = () => {
     }
 }
 
+let indentCurrentLine = (scratchpad) => {
+    let pos = scratchpad.selectionStart;
+    let lines = scratchpad.value.split("\n");
+    let current_line_number = getLineNumber(scratchpad);
+
+    let line = lines[current_line_number];
+    line = "  " + line;
+    lines[current_line_number] = line;
+
+    scratchpad.value = lines.join('\n');
+    scratchpad.setSelectionRange(pos + 2, pos + 2);
+}
+
 let unindentCurrentLine = (scratchpad) => {
     let pos = scratchpad.selectionStart;
     let lines = scratchpad.value.split("\n");
@@ -191,7 +204,7 @@ let unindentCurrentLine = (scratchpad) => {
     lines[current_line_number] = line;
 
     scratchpad.value = lines.join('\n');
-    scratchpad.setSelectionRange(pos - length_change, pos - length_change)
+    scratchpad.setSelectionRange(pos - length_change, pos - length_change);
 }
 
 let handleTab = (e, scratchpad) => {
@@ -429,5 +442,13 @@ let openDismissablePanel = (id) => {
 
     Mousetrap.bind('mod+shift+k', function(e) {
         toggleSidebar();
+    });
+
+    Mousetrap.bind('mod+]', function (e) {
+        indentCurrentLine(scratchpad);
+    });
+
+    Mousetrap.bind('mod+[', function (e) {
+        unindentCurrentLine(scratchpad);
     });
 })()
