@@ -140,6 +140,17 @@ p {
     color: #93a1a1;
 }
 
+.outlook-md {
+    font-family: 'Calibri', sans-serif;
+    background-color: white;
+    color: black;
+}
+
+.outlook-md blockquote {
+    border-left: 3px solid #ccc;
+    padding-left: 1em;
+    margin-left: 1em;
+}
 
 /* Solarized Green */
 

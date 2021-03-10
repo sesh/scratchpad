@@ -243,6 +243,27 @@ let updateMarkdown = (scratchpad) => {
     });
 }
 
+let copyFormatted = (scratchpad) => {
+    function listener(e) {
+        let el = document.createElement('div');
+        el.classList = 'formatted-md';
+
+        let content = scratchpad.value;
+        el.innerHTML = marked(content, {
+            highlight: (code) => {
+                return hljs.highlightAuto(code).value;
+            }
+        });
+        e.clipboardData.setData("text/html", el.innerHTML);
+        e.clipboardData.setData("text/plain", el.innerHTML);
+        e.preventDefault();
+    }
+
+    document.addEventListener("copy", listener);
+    document.execCommand("copy");
+    document.removeEventListener("copy", listener);
+}
+
 let toggleMarkdown = (scratchpad) => {
     let el = document.querySelector('#markdownOutput');
 
@@ -340,6 +361,10 @@ let openDismissablePanel = (id) => {
         {
             "name": "base64-encode",
             "action": base64encode,
+        },
+        {
+            "name": "copy-formatted",
+            "action": copyFormatted,
         },
         {
             "name": "dark",
