@@ -117,6 +117,11 @@ let jq = (scratchpad) => {
     }
 }
 
+let htmlFormat = (scratchpad) => {
+    var formatted = prettier.format(scratchpad.value, {parser: 'html', plugins: prettierPlugins});
+    scratchpad.value = formatted;
+}
+
 let jwt = (scratchpad) => {
     try {
         var token = jwt_decode(scratchpad.value);
@@ -379,6 +384,11 @@ let openDismissablePanel = (id) => {
         {
             "name": "dt",
             "action": dt,
+            "footer": true,
+        },
+        {
+            "name": "html-format",
+            "action": htmlFormat,
             "footer": true,
         },
         {
