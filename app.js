@@ -90,7 +90,7 @@ function shuffle(array) {
 
 let sortLines = (scratchpad) => {
     let lines = scratchpad.value.split("\n");
-    shuffleArray(lines);
+    lines.sort()
     scratchpad.value = lines.join("\n");
 }
 
